@@ -1,0 +1,12 @@
+cmake_minimum_required(VERSION 3.10)
+if (MSVC)
+    add_compile_options(/W3)
+    add_compile_options(/std:c++20)
+    add_compile_options(/EHsc)
+else()
+    add_compile_options(-Wall)
+    add_compile_options(-std=c++20)
+    add_compile_options(-fexceptions)
+endif()
+
+add_executable(my_program main.cpp)
