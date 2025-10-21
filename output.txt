@@ -1,127 +1,102 @@
-у режимі REALISE:
+у режимі Realise (без оптимізації):
 Experiment 1: std::all_of (no policy)
-Size: 1000000 elements, trials=50, time 0.001 ms
-Result: false
-Size: 10000000 elements, trials=50, time 0.001 ms
-Result: false
-Size: 50000000 elements, trials=50, time 0.000 ms
-Result: false
+Size: 1000000 elements, trials=100, time 47.423 ms
+Size: 10000000 elements, trials=100, time 470.028 ms
+Size: 50000000 elements, trials=100, time 2367.078 ms
 
 Experiment 2: std::all_of with execution policies
 
 Size: 1000000 elements
 ----------------------------------------
-seq: 0.001 ms
-Result: false
-parallel: 0.001 ms
-Result: false
-unseq: 0.000 ms
-Result: false
-par_unseq: 0.001 ms
-Result: false
+seq: 47.644 ms
+parallel: 47.318 ms
+unseq: 52.293 ms
+par_unseq: 50.808 ms
 
 Size: 10000000 elements
 ----------------------------------------
-seq: 0.000 ms
-Result: false
-parallel: 0.000 ms
-Result: false
-unseq: 0.001 ms
-Result: false
-par_unseq: 0.001 ms
-Result: false
+seq: 468.510 ms
+parallel: 467.903 ms
+unseq: 507.683 ms
+par_unseq: 514.882 ms
 
 Size: 50000000 elements
 ----------------------------------------
-seq: 0.002 ms
-Result: false
-parallel: 0.000 ms
-Result: false
-unseq: 0.000 ms
-Result: false
-par_unseq: 0.000 ms
-Result: false
+seq: 2350.682 ms
+parallel: 2337.664 ms
+unseq: 2662.951 ms
+par_unseq: 2685.029 ms
 
 Experiment 3: custom parallel all_of (varying K)
 Hardware threads: 12
 
-0.043 ms
-0.031 ms
-0.056 ms
-0.089 ms
-0.187 ms
+28.808 ms
+14.823 ms
+8.080 ms
+6.641 ms
+4.761 ms
+5.550 ms
 K       Time (ms)      Speedup     
 -----------------------------------
-1       0.043          x1.00
-2       0.031          x1.39
-4       0.056          x0.77
-8       0.089          x0.48
-16      0.187          x0.23
+1       28.808         x1.00
+2       14.823         x1.94
+4       8.080          x3.57
+8       6.641          x4.34
+12      4.761          x6.05
+16      5.550          x5.19
 
-Best speed at K = 2
+Best speed at K = 12
 Number of hardware threads: 12
-K to hardware thread ratio: 0.17
+K to hardware thread ratio: 1.00
 
-у режимі Debug:
+у режимі Realise (з оптимізацією):
+
 Experiment 1: std::all_of (no policy)
-Size: 1000000 elements, trials=50 time 0.002 ms
-Result: false
-Size: 10000000 elements, trials=50 time 0.001 ms
-Result: false
-Size: 50000000 elements, trials=50 time 0.001 ms
-Result: false
+Size: 1000000 elements, trials=100, time 67.644 ms
+Size: 10000000 elements, trials=100, time 470.778 ms
+Size: 50000000 elements, trials=100, time 2350.042 ms
 
 Experiment 2: std::all_of with execution policies
 
 Size: 1000000 elements
 ----------------------------------------
-seq: 0.004 ms
-Result: false
-parallel: 0.005 ms
-Result: false
-unseq: 0.003 ms
-Result: false
-par_unseq: 0.005 ms
-Result: false
+seq: 47.331 ms
+parallel: 47.129 ms
+unseq: 51.397 ms
+par_unseq: 51.026 ms
 
 Size: 10000000 elements
 ----------------------------------------
-seq: 0.003 ms
-Result: false
-parallel: 0.005 ms
-Result: false
-unseq: 0.003 ms
-Result: false
-par_unseq: 0.005 ms
-Result: false
+seq: 468.408 ms
+parallel: 468.219 ms
+unseq: 539.292 ms
+par_unseq: 524.225 ms
 
 Size: 50000000 elements
 ----------------------------------------
-seq: 0.003 ms
-Result: false
-parallel: 0.005 ms
-Result: false
-unseq: 0.003 ms
-Result: false
-par_unseq: 0.005 ms
-Result: false
+seq: 2348.095 ms
+parallel: 2337.455 ms
+unseq: 2704.707 ms
+par_unseq: 2662.885 ms
 
 Experiment 3: custom parallel all_of (varying K)
 Hardware threads: 12
 
-0.049 ms
-0.041 ms
-0.058 ms
-0.111 ms
-0.190 ms
+29.119 ms
+14.765 ms
+8.580 ms
+6.327 ms
+5.444 ms
+20.857 ms
 K       Time (ms)      Speedup     
 -----------------------------------
-1       0.049          x1.00
-2       0.041          x1.20
-4       0.058          x0.84
-8       0.111          x0.44
-16      0.190          x0.26
+1       29.119         x1.00
+2       14.765         x1.97
+4       8.580          x3.39
+8       6.327          x4.60
+12      5.444          x5.35
+16      20.857         x1.40
 
-Best speed at K = 2
+Best speed at K = 12
 Number of hardware threads: 12
-K to hardware thread ratio: 0.17
+K to hardware thread ratio: 1.00

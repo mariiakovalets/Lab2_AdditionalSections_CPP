@@ -42,8 +42,8 @@ void demo_allof_no_policy()
 {
     cout << "\nExperiment 1: std::all_of (no policy)\n";
     vector<size_t> sizes = {1000000, 10000000, 50000000};
-    int threshold = 50;
-    int trials = 50;
+    int threshold = 101;
+    int trials = 100;
 
     for (auto n : sizes)
     {
@@ -53,10 +53,9 @@ void demo_allof_no_policy()
 
         timeit([&]()
                { result = all_of(data.begin(), data.end(), [&](int x)
-                                 { return x < threshold; }); },
+                                 { return std::sqrt(x * x + 10) < threshold; }); },
                trials);
 
-        cout << "Result: " << boolalpha << result << endl;
     }
 }
 
@@ -64,8 +63,8 @@ void demo_allof_policies()
 {
     cout << "\nExperiment 2: std::all_of with execution policies\n";
     vector<size_t> sizes = {1000000, 10000000, 50000000};
-    int threshold = 50;
-    int trials = 50;
+    int threshold = 101;
+    int trials = 100;
 
     for (auto n : sizes)
     {
@@ -78,30 +77,25 @@ void demo_allof_policies()
         cout << "seq: ";
         timeit([&]()
                { result = all_of(execution::seq, data.begin(), data.end(), [&](int x)
-                                 { return x < threshold; }); },
+                                 {return std::sqrt(x * x + 10) < threshold;}); },
                trials);
-        cout << "Result: " << boolalpha << result << endl;
-
         cout << "parallel: ";
         timeit([&]()
                { result = all_of(execution::par, data.begin(), data.end(), [&](int x)
-                                 { return x < threshold; }); },
+                                 { return std::sqrt(x * x + 10) < threshold; }); },
                trials);
-        cout << "Result: " << boolalpha << result << endl;
 
         cout << "unseq: ";
         timeit([&]()
                { result = all_of(execution::unseq, data.begin(), data.end(), [&](int x)
-                                 { return x < threshold; }); },
+                                 {return std::sqrt(x * x + 10) < threshold; }); },
                trials);
-        cout << "Result: " << boolalpha << result << endl;
 
         cout << "par_unseq: ";
         timeit([&]()
                { result = all_of(execution::par_unseq, data.begin(), data.end(), [&](int x)
-                                 { return x < threshold; }); },
+                                 { return std::sqrt(x * x + 10) < threshold; }); },
                trials);
-        cout << "Result: " << boolalpha << result << endl;
     }
 }
 
@@ -123,8 +117,7 @@ bool parallel_all_of(const vector<int> &data, int threshold, int K)
         threads.emplace_back([&, i, start, end]()
                              {
                                  results[i] = all_of(data.begin() + start, data.begin() + end, [&](int x)
-                                                     { return x < threshold; });
-                             });
+                                                     { return std::sqrt(x * x + 10) < threshold; }); });
     }
 
     for (auto &t : threads)
@@ -138,13 +131,14 @@ void demo_parallel_custom()
 {
     cout << "\nExperiment 3: custom parallel all_of (varying K)\n";
     size_t n = 50'000'000;
-    int threshold = 50;
+    int threshold = 101;
     auto data = getRandomInts(n, 0, 100);
 
     unsigned int hw = thread::hardware_concurrency();
     cout << "Hardware threads: " << hw << "\n\n";
 
-    vector<int> K_values = {1, 2, 4, 8, 16};
+    vector<int> K_values = {1, 2, 4, 8, 12, 16};
+
     vector<double> times;
 
     for (int K : K_values)

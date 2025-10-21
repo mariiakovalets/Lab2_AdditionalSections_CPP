@@ -7,6 +7,10 @@ else()
     add_compile_options(-Wall)
     add_compile_options(-std=c++20)
     add_compile_options(-fexceptions)
+    # add_compile_options(-O3)
+
 endif()
 
-add_executable(my_program main.cpp)
+add_executable(my_program main2.cpp)
+
+
