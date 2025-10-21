@@ -1,49 +1,50 @@
 у режимі Realise (без оптимізації):
+
 Experiment 1: std::all_of (no policy)
-Size: 1000000 elements, trials=100, time 47.423 ms
-Size: 10000000 elements, trials=100, time 470.028 ms
-Size: 50000000 elements, trials=100, time 2367.078 ms
+Size: 1000000 elements, trials=100, time 66.748 ms
+Size: 10000000 elements, trials=100, time 472.912 ms
+Size: 50000000 elements, trials=100, time 2345.234 ms
 
 Experiment 2: std::all_of with execution policies
 
 Size: 1000000 elements
 ----------------------------------------
-seq: 47.644 ms
-parallel: 47.318 ms
-unseq: 52.293 ms
-par_unseq: 50.808 ms
+seq: 47.549 ms
+parallel: 47.155 ms
+unseq: 51.195 ms
+par_unseq: 50.909 ms
 
 Size: 10000000 elements
 ----------------------------------------
-seq: 468.510 ms
-parallel: 467.903 ms
-unseq: 507.683 ms
-par_unseq: 514.882 ms
+seq: 483.210 ms
+parallel: 471.657 ms
+unseq: 525.666 ms
+par_unseq: 539.160 ms
 
 Size: 50000000 elements
 ----------------------------------------
-seq: 2350.682 ms
-parallel: 2337.664 ms
-unseq: 2662.951 ms
-par_unseq: 2685.029 ms
+seq: 2498.065 ms
+parallel: 2426.138 ms
+unseq: 2767.467 ms
+par_unseq: 2717.558 ms
 
 Experiment 3: custom parallel all_of (varying K)
 Hardware threads: 12
 
-28.808 ms
-14.823 ms
-8.080 ms
-6.641 ms
-4.761 ms
-5.550 ms
+28.761 ms
+14.885 ms
+8.075 ms
+6.757 ms
+4.877 ms
+5.272 ms
 K       Time (ms)      Speedup     
 -----------------------------------
-1       28.808         x1.00
-2       14.823         x1.94
-4       8.080          x3.57
-8       6.641          x4.34
-12      4.761          x6.05
-16      5.550          x5.19
+1       28.761         x1.00
+2       14.885         x1.93
+4       8.075          x3.56
+8       6.757          x4.26
+12      4.877          x5.90
+16      5.272          x5.46
 
 Best speed at K = 12
 Number of hardware threads: 12
@@ -52,50 +53,50 @@ K to hardware thread ratio: 1.00
 у режимі Realise (з оптимізацією):
 
 Experiment 1: std::all_of (no policy)
-Size: 1000000 elements, trials=100, time 67.644 ms
-Size: 10000000 elements, trials=100, time 470.778 ms
-Size: 50000000 elements, trials=100, time 2350.042 ms
+Size: 1000000 elements, trials=100, time 61.920 ms
+Size: 10000000 elements, trials=100, time 470.766 ms
+Size: 50000000 elements, trials=100, time 2356.298 ms
 
 Experiment 2: std::all_of with execution policies
 
 Size: 1000000 elements
 ----------------------------------------
-seq: 47.331 ms
-parallel: 47.129 ms
-unseq: 51.397 ms
-par_unseq: 51.026 ms
+seq: 47.388 ms
+parallel: 47.966 ms
+unseq: 52.937 ms
+par_unseq: 51.947 ms
 
 Size: 10000000 elements
 ----------------------------------------
-seq: 468.408 ms
-parallel: 468.219 ms
-unseq: 539.292 ms
-par_unseq: 524.225 ms
+seq: 475.976 ms
+parallel: 471.285 ms
+unseq: 546.548 ms
+par_unseq: 551.716 ms
 
 Size: 50000000 elements
 ----------------------------------------
-seq: 2348.095 ms
-parallel: 2337.455 ms
-unseq: 2704.707 ms
-par_unseq: 2662.885 ms
+seq: 2359.046 ms
+parallel: 2337.335 ms
+unseq: 2677.075 ms
+par_unseq: 2656.669 ms
 
 Experiment 3: custom parallel all_of (varying K)
 Hardware threads: 12
 
-29.119 ms
-14.765 ms
-8.580 ms
-6.327 ms
-5.444 ms
-20.857 ms
+28.785 ms
+14.769 ms
+8.032 ms
+6.530 ms
+4.783 ms
+5.326 ms
 K       Time (ms)      Speedup     
 -----------------------------------
-1       29.119         x1.00
-2       14.765         x1.97
-4       8.580          x3.39
-8       6.327          x4.60
-12      5.444          x5.35
-16      20.857         x1.40
+1       28.785         x1.00
+2       14.769         x1.95
+4       8.032          x3.58
+8       6.530          x4.41
+12      4.783          x6.02
+16      5.326          x5.40
 
 Best speed at K = 12
 Number of hardware threads: 12
