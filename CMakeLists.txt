@@ -11,6 +11,6 @@ else()
 
 endif()
 
-add_executable(my_program main2.cpp)
+add_executable(my_program main.cpp)
 
 
